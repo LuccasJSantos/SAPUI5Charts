@@ -16,13 +16,13 @@ Use sample:
 
 sap.ui.define([
   '../library/SAPUI5Charts/Column'
-], function (oColumn) ...);
+], function (Column) ...);
 
 .
 .
 .
 
-var oColumn = new ColumnChart({
+var oColumn = new Column({
   id: 'chartId', // not required
   dimensions: [
     {
@@ -64,7 +64,7 @@ Use sample:
 ```
 sap.ui.define([
   '../library/SAPUI5Charts/StackedCombinationColumnLine'
-], function (oStacked) ...);
+], function (Stacked) ...);
 
 .
 .
