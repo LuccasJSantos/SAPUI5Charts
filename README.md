@@ -23,7 +23,7 @@ sap.ui.define([
 .
 
 var oColumn = new ColumnChart({
-  id: 'chartId',
+  id: 'chartId', // not required
   dimensions: [
     {
       name: 'Month',
