@@ -3,9 +3,9 @@ Making the life a lil' bit easier
 
 First of all, add the following namespaces to the view in which the charts will be used.
 
-xmlns:viz="sap.viz.ui5.controls" 
-xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
-xmlns:viz.data="sap.viz.ui5.data"
+xmlns:viz="sap.viz.ui5.controls" <br>
+xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" <br>
+xmlns:viz.data="sap.viz.ui5.data"<br><br>
 
 reference the chart in the define function params.
 
