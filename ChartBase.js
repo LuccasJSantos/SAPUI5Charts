@@ -1,19 +1,26 @@
 sap.ui.define(
 	[
+		'sap/viz/ui5/controls/Popover',
 		'sap/viz/ui5/controls/VizFrame',
 		'sap/viz/ui5/data/FlattenedDataset',
 		'sap/viz/ui5/controls/common/feeds/FeedItem'
 	],
-	function(VizFrame, FlattenedDataset, FeedItem) {
+	function(Popover, VizFrame, FlattenedDataset, FeedItem) {
 		return class ChartBase {
 			constructor(mSettings) {
 				var id = mSettings.id ? mSettings.id : null;
 				if (id) {
-					this.oVizFrame = new VizFrame(id);
+					this.oVizFrame = new VizFrame({
+						id: id,
+						uiConfig: { applicationSet: 'fiori' }
+					});
 				} else {
-					this.oVizFrame = new VizFrame();
+					this.oVizFrame = new VizFrame({
+						uiConfig: { applicationSet: 'fiori' }
+					});
 				}
 
+				this.setPopover.call(this, mSettings);
 				this.setVizProperties.call(this, mSettings);
 				this.setVizType.call(this, mSettings);
 				this.setModel.call(this, mSettings);
@@ -21,16 +28,30 @@ sap.ui.define(
 				this.setFeedItems.call(this, mSettings);
 			}
 
+			setPopover({ popover }) {
+				if (!popover) return;
+
+				this.oPopover = new Popover({
+					customDataControl: popover.dataHandler
+						? popover.dataHandler.bind(this)
+						: null
+				});
+
+				this.oPopover.connect(this.getVizFrame().getVizUid());
+			}
+
 			getVizFrame() {
 				return this.oVizFrame;
+			}
+
+			getPopover() {
+				return this.oPopover;
 			}
 
 			updateData(oData) {
 				this.oModel.setData(oData);
 				this.oModel.updateBindings();
 			}
-
-			setFeedItems() {}
 
 			setVizProperties({ measures }) {
 				this.oVizFrame.setVizProperties({
